@@ -1,6 +1,8 @@
 import { BrowserRouter, Navigate } from 'react-router-dom';
 import { Routes, Route, NavLink } from 'react-router-dom';
 
+import { routes } from './routes';
+
 import logo from '../logo.svg';
 
 /*
@@ -17,40 +19,34 @@ export const Navigation = () => {
                 <nav>
                     <img src={logo} alt='React logo' />
                     <ul>
-                        <li>
-                            <NavLink
-                                // en caso de estar activa cambia de color
-                                className={({ isActive }) => isActive ? 'nav-active' : ''}
-                                to='/home'
-                            >
-                                Home
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink
-                                className={({ isActive }) => isActive ? 'nav-active' : ''}
-                                to='/about'
-                            >
-                                About
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink
-                                className={({ isActive }) => isActive ? 'nav-active' : ''}
-                                to='/users'
-                            >
-                                Users
-                            </NavLink>
-                        </li>
+                        {
+                            routes.map(route => (
+                                <li key={route.to}>
+                                    <NavLink
+                                        // en caso de estar activa cambia de color
+                                        className={({ isActive }) => isActive ? 'nav-active' : ''}
+                                        to={route.to}
+                                    >
+                                        {route.name}
+                                    </NavLink>
+                                </li>
+                            ))
+                        }
                     </ul>
                 </nav>
 
                 <Routes>
-                    <Route path='about' element={<h1>About Page</h1>} />
-                    <Route path='users' element={<h1>Users Page</h1>} />
-                    <Route path='home' element={<h1>Home Page</h1>} />
+                    {
+                        routes.map(route => (
+                            <Route
+                                element={<route.Component />}
+                                key={route.to}
+                                path={route.path}
+                            />
+                        ))
+                    }
                     {/* replace no permite regresar */}
-                    <Route path='/*' element={<Navigate to='/home' replace />} />
+                    <Route path='/*' element={<Navigate to={routes[0].to} replace />} />
                 </Routes>
 
             </div>
