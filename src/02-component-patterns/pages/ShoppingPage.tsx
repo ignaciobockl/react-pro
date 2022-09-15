@@ -19,11 +19,11 @@ export const ShoppingPage = () => {
       }}>
         
         {/* Una forma de hacerlo */}
-        {/* <ProductCard product={product} >
+        <ProductCard product={product} >
           <ProductCard.Image />
           <ProductCard.Title />
           <ProductCard.Buttons />
-        </ProductCard> */}
+        </ProductCard>
 
         {/* Otra forma de hacerlo */}
         <ProductCard product={product} >
