@@ -6,12 +6,43 @@ import styles from '../styles/styles.module.css';
 
 interface ProductProps {
     product: Product;
-}
+};
 
 interface Product {
     id: string;
     title: string;
     img?: string;
+};
+
+interface ProductButtonsProps {
+    counter: number;
+    increaseBy: (value: number) => void;
+}
+
+export const ProductImage = ({ img }: { img?: string }) => {
+    return (
+        <img
+            alt='Product Img'
+            className={styles.productImg}
+            src={img ? img : noImage}
+        />
+    )
+};
+
+export const ProductTitle = ({ title }: { title: string; }) => {
+    return (
+        <span className={styles.productDescription}>{title}</span>
+    )
+};
+
+export const ProductButtons = ({counter, increaseBy}: ProductButtonsProps) => {
+    return (
+        <div className={styles.buttonsContainer}>
+            <button className={styles.buttonMinus} onClick={() => increaseBy(-1)}>-</button>
+            <div className={styles.countLabel}>{counter}</div>
+            <button className={styles.buttonAdd} onClick={() => increaseBy(+1)}>+</button>
+        </div>
+    )
 }
 
 export const ProductCard = ({ product }: ProductProps) => {
@@ -20,19 +51,13 @@ export const ProductCard = ({ product }: ProductProps) => {
 
     return (
         <div className={styles.productCard}>
-            <img
-                alt='Coffee Mug'
-                className={styles.productImg}
-                src={product.img ? product.img : noImage}
-            />
 
-            <span className={styles.productDescription}>{product.title}</span>
+            <ProductImage img={product.img} />
 
-            <div className={styles.buttonsContainer}>
-                <button className={styles.buttonMinus} onClick={() => increaseBy(-1)}>-</button>
-                <div className={styles.countLabel}>{counter}</div>
-                <button className={styles.buttonAdd} onClick={() => increaseBy(+1)}>+</button>
-            </div>
+            <ProductTitle title={product.title} />
+
+            <ProductButtons counter={counter} increaseBy={increaseBy} />
+
         </div>
     )
 }
