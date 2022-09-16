@@ -8,6 +8,7 @@ interface Product {
 
 export interface ProductCardProps {
     children?: ReactElement | ReactElement[]; // tambien puede ser () => JSX.Element
+    className?: string;
     product: Product;
 };
 
