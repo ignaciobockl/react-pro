@@ -29,8 +29,8 @@ export const ShoppingPage = () => {
 
         {/* Otra forma de hacerlo */}
         <ProductCard className='bg-dark' product={product} >
-          <ProductImage />
-          <ProductTitle />
+          <ProductImage className='custom-image' />
+          <ProductTitle className='text-white text-bold' />
           <ProductButtons />
         </ProductCard>
 
