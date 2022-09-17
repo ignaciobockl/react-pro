@@ -8,7 +8,7 @@ import { ProductImageProps } from '../interfaces';
 
 import styles from '../styles/styles.module.css';
 
-export const ProductImage = ({ className, img }: ProductImageProps) => {
+export const ProductImage = ({ className, img, style }: ProductImageProps) => {
 
     const { product } = useContext(ProductContext);
 
@@ -23,6 +23,7 @@ export const ProductImage = ({ className, img }: ProductImageProps) => {
             alt='Product Img'
             className={`${styles.productImg} ${className}`}
             src={imgToShow}
+            style={ style }
         />
     )
 };

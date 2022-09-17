@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { CSSProperties, ReactElement } from 'react';
 
 interface Product {
     id: string;
@@ -8,12 +8,14 @@ interface Product {
 
 export interface ProductButtonsProps {
     className?: string;
+    style?: CSSProperties;
 }
 
 export interface ProductCardProps {
     children?: ReactElement | ReactElement[]; // tambien puede ser () => JSX.Element
     className?: string;
     product: Product;
+    style?: CSSProperties;
 };
 
 export interface ProductCardHOCProps {
@@ -32,9 +34,11 @@ export interface ProductContextProps {
 export interface ProductImageProps {
     className?: string;
     img?: string;
+    style?: CSSProperties;
 }
 
 export interface ProductTitleProps {
     className?: string;
     title?: string;
+    style?: CSSProperties;
 }

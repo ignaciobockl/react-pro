@@ -6,12 +6,15 @@ import { ProductTitleProps } from '../interfaces';
 
 import styles from '../styles/styles.module.css';
 
-export const ProductTitle = ({ title, className }: ProductTitleProps) => {
+export const ProductTitle = ({ className, title, style }: ProductTitleProps) => {
 
     const { product } = useContext(ProductContext);
 
     return (
-        <span className={`${styles.productDescription} ${className}`}>
+        <span 
+        className={`${styles.productDescription} ${className}`}
+        style={ style }
+        >
             {title ? title : product.title}
         </span>
     )
