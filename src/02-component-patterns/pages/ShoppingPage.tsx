@@ -23,13 +23,24 @@ const products: Product[] = [product1, product2];
 export const ShoppingPage = () => {
 
   // [key: string]: ProductInCart = viene una X cantidad de llaves de tipo ProductInCart
-  const [shoppingCart, setDhoppingCart] = useState<{ [key: string]: ProductInCart}>({
-    '1': { ...product1, count: 10 },
-    '2': { ...product2, count: 3 },
-  });
+  const [shoppingCart, setShoppingCart] = useState<{ [key: string]: ProductInCart}>({});
 
   const onProductCountChange = ({ count, product }: onChangeArgs) => {
-    console.log('onProductCountChange', count, product);
+    
+    setShoppingCart( oldShoppingCart => {
+
+      if ( count === 0 ) {
+        
+        const { [product.id]: toDelete, ...rest } = oldShoppingCart;
+        
+        return { ...rest }
+      }
+
+      return {
+        ...oldShoppingCart,
+        [product.id]: { ...product, count }
+      }
+    });
   }
 
   return (
