@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { ProductButtons, ProductCard, ProductImage, ProductTitle } from '../components';
 
-import { Product, ProductInCart } from '../interfaces/index';
+import { onChangeArgs, Product, ProductInCart } from '../interfaces/index';
 
 import '../styles/custom-styles.css';
 
@@ -28,8 +28,8 @@ export const ShoppingPage = () => {
     '2': { ...product2, count: 3 },
   });
 
-  const onProductCountChange = () => {
-    console.log('onProductCountChange');
+  const onProductCountChange = ({ count, product }: onChangeArgs) => {
+    console.log('onProductCountChange', count, product);
   }
 
   return (
