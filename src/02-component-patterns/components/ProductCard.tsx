@@ -9,9 +9,9 @@ import styles from '../styles/styles.module.css';
 export const ProductContext = createContext({} as ProductContextProps);
 const { Provider } = ProductContext;
 
-export const ProductCard = ({ children, className, product, style }: ProductCardProps) => {
+export const ProductCard = ({ children, className, onChange, product, style }: ProductCardProps) => {
 
-    const { counter, increaseBy } = useProduct();
+    const { counter, increaseBy } = useProduct( onChange );
 
     return (
         <Provider value={{
