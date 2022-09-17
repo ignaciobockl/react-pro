@@ -1,5 +1,11 @@
 .bg-dark {
-    background-color: rgb(56,56,56);
+    background-color: rgb(56, 56, 56);
+}
+
+.custom-buttons button,
+.custom-buttons div {
+    border-color: white;
+    color: white;
 }
 
 .custom-image {

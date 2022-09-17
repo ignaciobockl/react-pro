@@ -6,6 +6,10 @@ interface Product {
     img?: string;
 };
 
+export interface ProductButtonsProps {
+    className?: string;
+}
+
 export interface ProductCardProps {
     children?: ReactElement | ReactElement[]; // tambien puede ser () => JSX.Element
     className?: string;
@@ -14,9 +18,9 @@ export interface ProductCardProps {
 
 export interface ProductCardHOCProps {
     ({ children, product }: ProductCardProps): JSX.Element,
-    Buttons: () => JSX.Element,
-    Image: ({ img }: { img?: string }) => JSX.Element,
-    Title: ({ title }: { title?: string }) => JSX.Element,
+    Buttons: (Props: ProductButtonsProps) => JSX.Element,
+    Image: (Props: ProductImageProps) => JSX.Element,
+    Title: (Props: ProductTitleProps) => JSX.Element,
 }
 
 export interface ProductContextProps {

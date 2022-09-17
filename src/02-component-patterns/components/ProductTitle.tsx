@@ -6,7 +6,7 @@ import { ProductTitleProps } from '../interfaces';
 
 import styles from '../styles/styles.module.css';
 
-export const ProductTitle = ({title, className}: ProductTitleProps) => {
+export const ProductTitle = ({ title, className }: ProductTitleProps) => {
 
     const { product } = useContext(ProductContext);
 
