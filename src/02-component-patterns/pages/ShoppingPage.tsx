@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ProductButtons, ProductCard, ProductImage, ProductTitle } from '../components';
 
-import { Product } from '../interfaces';
+import { Product, ProductInCart } from '../interfaces';
 
 import '../styles/custom-styles.css';
 
@@ -21,7 +21,7 @@ const products: Product[] = [product1, product2];
 
 export const ShoppingPage = () => {
 
-  const [shoppingCart, setShoppingCart] = useState({});
+  const [shoppingCart, setShoppingCart] = useState<{ [key:string]: ProductInCart }>({});
 
   return (
     <div>
