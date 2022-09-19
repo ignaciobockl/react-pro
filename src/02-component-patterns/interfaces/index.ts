@@ -1,6 +1,6 @@
 import { CSSProperties, ReactElement } from 'react';
 
-interface Product {
+export interface Product {
     id: string;
     title: string;
     img?: string;
@@ -35,6 +35,10 @@ export interface ProductImageProps {
     className?: string;
     img?: string;
     style?: CSSProperties;
+}
+
+export interface ProductInCart extends Product {
+    count: number;
 }
 
 export interface ProductTitleProps {
