@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { ProductButtons, ProductCard, ProductImage, ProductTitle } from '../components';
 
-import { onChangeArgs, Product, ProductInCart } from '../interfaces/index';
+import { Product, ProductInCart } from '../interfaces';
 
 import '../styles/custom-styles.css';
 
@@ -22,26 +22,7 @@ const products: Product[] = [product1, product2];
 
 export const ShoppingPage = () => {
 
-  // [key: string]: ProductInCart = viene una X cantidad de llaves de tipo ProductInCart
-  const [shoppingCart, setShoppingCart] = useState<{ [key: string]: ProductInCart}>({});
-
-  const onProductCountChange = ({ count, product }: onChangeArgs) => {
-    
-    setShoppingCart( oldShoppingCart => {
-
-      if ( count === 0 ) {
-        
-        const { [product.id]: toDelete, ...rest } = oldShoppingCart;
-        
-        return { ...rest }
-      }
-
-      return {
-        ...oldShoppingCart,
-        [product.id]: { ...product, count }
-      }
-    });
-  }
+  const [shoppingCart, setShoppingCart] = useState<{ [key:string]: ProductInCart }>({});
 
   return (
     <div>
@@ -69,33 +50,22 @@ export const ShoppingPage = () => {
         </ProductCard> */}
 
         {/* Otra forma de hacerlo */}
-        {/* <ProductCard
-          product={product1}
-          style={{
-            backgroundColor: '#70d1f8',
-          }}
-        >
-          <ProductImage style={{ boxShadow: '10px 10px 10px rgba(0,0,0,0.2)', }} />
-          <ProductTitle style={{ fontWeight: 'bold', }} />
-          <ProductButtons
-            style={{
-              display: 'flex',
-              justifyContent: 'end',
-            }}
-          />
+        {/* <ProductCard product={product1} style={{ backgroundColor: '#70d1f8' }} >
+          <ProductImage style={{ boxShadow: '10px 10px 10px rgba(0,0,0,0.2)' }} />
+          <ProductTitle style={{ fontWeight: 'bold' }} />
+          <ProductButtons style={{ display: 'flex', justifyContent: 'end' }} />
         </ProductCard> */}
 
         {
-          products.map(product => (
+          products.map((product) => (
             <ProductCard
               className='bg-dark text-white'
               key={product.id}
-              onChange={ onProductCountChange }
               product={product}
             >
               <ProductImage
                 className='custom-image'
-                style={{ boxShadow: '10px 10px 10px rgba(0,0,0,0.2)', }}
+                style={{ boxShadow: '10px 10px 10px rgba(0,0,0,0.2)' }}
               />
               <ProductTitle className='text-bold' />
               <ProductButtons className='custom-buttons' />
@@ -106,33 +76,28 @@ export const ShoppingPage = () => {
       </div>
 
       <div className='shopping-cart'>
-        <ProductCard
+      <ProductCard
           className='bg-dark text-white'
-          onChange={ onProductCountChange }
+          key={product2.id}
           product={product2}
-          style={{
-            width: '100px',
-          }}
+          style={{ width: '100px' }}
         >
           <ProductImage
             className='custom-image'
-            style={{ boxShadow: '10px 10px 10px rgba(0,0,0,0.2)', }}
+            style={{ boxShadow: '10px 10px 10px rgba(0,0,0,0.2)' }}
           />
           <ProductTitle className='text-bold' />
           <ProductButtons className='custom-buttons' />
         </ProductCard>
-
         <ProductCard
           className='bg-dark text-white'
-          onChange={ onProductCountChange }
+          key={product1.id}
           product={product1}
-          style={{
-            width: '100px',
-          }}
+          style={{ width: '100px' }}
         >
           <ProductImage
             className='custom-image'
-            style={{ boxShadow: '10px 10px 10px rgba(0,0,0,0.2)', }}
+            style={{ boxShadow: '10px 10px 10px rgba(0,0,0,0.2)' }}
           />
           <ProductTitle className='text-bold' />
           <ProductButtons className='custom-buttons' />

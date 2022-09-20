@@ -1,10 +1,5 @@
 import { CSSProperties, ReactElement } from 'react';
 
-export interface onChangeArgs {
-    count: number,
-    product: Product, 
-}
-
 export interface Product {
     id: string;
     title: string;
