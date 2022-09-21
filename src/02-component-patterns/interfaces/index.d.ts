@@ -1,5 +1,10 @@
 import { CSSProperties, ReactElement } from 'react';
 
+export interface OnChangeArgs {
+    count: number;
+    product: Product;
+}
+
 export interface Product {
     id: string;
     title: string;
@@ -14,7 +19,7 @@ export interface ProductButtonsProps {
 export interface ProductCardProps {
     children?: ReactElement | ReactElement[]; // tambien puede ser () => JSX.Element
     className?: string;
-    onChange?: (args: onChangeArgs) => void;
+    onChange?: (args: OnChangeArgs) => void;
     product: Product;
     style?: CSSProperties;
 };
@@ -49,6 +54,6 @@ export interface ProductTitleProps {
 }
 
 export interface useProductsArgs {
-    onChange?: ( args: onChangeArgs ) => void;
+    onChange?: ( args: OnChangeArgs ) => void;
     product: Product;
 }

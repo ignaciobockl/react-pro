@@ -11,7 +11,7 @@ export const useProduct = ({ onChange, product }: useProductsArgs) => {
 
         setCounter(newValue);
 
-        onChange && onChange({ count: counter, product });
+        onChange && onChange({ count: newValue, product });
     }
 
     return {

@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { ProductButtons, ProductCard, ProductImage, ProductTitle } from '../components';
 
-import { Product, ProductInCart } from '../interfaces';
+import { OnChangeArgs, Product, ProductInCart } from '../interfaces';
 
 import '../styles/custom-styles.css';
 
@@ -22,7 +22,22 @@ const products: Product[] = [product1, product2];
 
 export const ShoppingPage = () => {
 
-  const [shoppingCart, setShoppingCart] = useState<{ [key:string]: ProductInCart }>({});
+  const [shoppingCart, setShoppingCart] = useState<{ [key: string]: ProductInCart }>({});
+
+  const onProductCountChange = ({ count, product }: OnChangeArgs) => {
+    setShoppingCart( oldShoppingCart => {
+      if ( count === 0 ) {
+        const { [product.id]: toDelete, ...rest } = oldShoppingCart;
+        console.log("🚀 ~ file: ShoppingPage.tsx ~ line 31 ~ onProductCountChange ~ toDelete", toDelete)
+        return rest;
+      }
+
+      return {
+        ...oldShoppingCart,
+        [product.id]: {...product, count}
+      }
+    });
+  }
 
   return (
     <div>
@@ -61,6 +76,7 @@ export const ShoppingPage = () => {
             <ProductCard
               className='bg-dark text-white'
               key={product.id}
+              onChange={onProductCountChange}
               product={product}
             >
               <ProductImage
@@ -76,9 +92,10 @@ export const ShoppingPage = () => {
       </div>
 
       <div className='shopping-cart'>
-      <ProductCard
+        <ProductCard
           className='bg-dark text-white'
           key={product2.id}
+          onChange={onProductCountChange}
           product={product2}
           style={{ width: '100px' }}
         >
@@ -92,6 +109,7 @@ export const ShoppingPage = () => {
         <ProductCard
           className='bg-dark text-white'
           key={product1.id}
+          onChange={onProductCountChange}
           product={product1}
           style={{ width: '100px' }}
         >
@@ -102,6 +120,12 @@ export const ShoppingPage = () => {
           <ProductTitle className='text-bold' />
           <ProductButtons className='custom-buttons' />
         </ProductCard>
+      </div>
+
+      <div>
+        <code>
+          { JSON.stringify(shoppingCart, null, 5) }
+        </code>
       </div>
 
     </div>
