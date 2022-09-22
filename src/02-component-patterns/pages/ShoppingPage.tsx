@@ -99,6 +99,7 @@ export const ShoppingPage = () => {
               onChange={onProductCountChange}
               product={product}
               style={{ width: '100px' }}
+              value={ product.count }
             >
               <ProductImage
                 className='custom-image'

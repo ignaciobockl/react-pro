@@ -22,6 +22,7 @@ export interface ProductCardProps {
     onChange?: (args: OnChangeArgs) => void;
     product: Product;
     style?: CSSProperties;
+    value?: number;
 };
 
 export interface ProductCardHOCProps {
@@ -56,4 +57,5 @@ export interface ProductTitleProps {
 export interface useProductsArgs {
     onChange?: ( args: OnChangeArgs ) => void;
     product: Product;
+    value?: number;
 }
