@@ -25,16 +25,15 @@ export const ShoppingPage = () => {
   const [shoppingCart, setShoppingCart] = useState<{ [key: string]: ProductInCart }>({});
 
   const onProductCountChange = ({ count, product }: OnChangeArgs) => {
-    setShoppingCart( oldShoppingCart => {
-      if ( count === 0 ) {
+    setShoppingCart(oldShoppingCart => {
+      if (count === 0) {
         const { [product.id]: toDelete, ...rest } = oldShoppingCart;
-        console.log("🚀 ~ file: ShoppingPage.tsx ~ line 31 ~ onProductCountChange ~ toDelete", toDelete)
         return rest;
       }
 
       return {
         ...oldShoppingCart,
-        [product.id]: {...product, count}
+        [product.id]: { ...product, count }
       }
     });
   }
@@ -92,39 +91,34 @@ export const ShoppingPage = () => {
       </div>
 
       <div className='shopping-cart'>
-        <ProductCard
-          className='bg-dark text-white'
-          key={product2.id}
-          onChange={onProductCountChange}
-          product={product2}
-          style={{ width: '100px' }}
-        >
-          <ProductImage
-            className='custom-image'
-            style={{ boxShadow: '10px 10px 10px rgba(0,0,0,0.2)' }}
-          />
-          <ProductTitle className='text-bold' />
-          <ProductButtons className='custom-buttons' />
-        </ProductCard>
-        <ProductCard
-          className='bg-dark text-white'
-          key={product1.id}
-          onChange={onProductCountChange}
-          product={product1}
-          style={{ width: '100px' }}
-        >
-          <ProductImage
-            className='custom-image'
-            style={{ boxShadow: '10px 10px 10px rgba(0,0,0,0.2)' }}
-          />
-          <ProductTitle className='text-bold' />
-          <ProductButtons className='custom-buttons' />
-        </ProductCard>
+        {
+          Object.entries(shoppingCart).map(([key, product]) => (
+            <ProductCard
+              className='bg-dark text-white'
+              key={key}
+              onChange={onProductCountChange}
+              product={product}
+              style={{ width: '100px' }}
+            >
+              <ProductImage
+                className='custom-image'
+                style={{ boxShadow: '10px 10px 10px rgba(0,0,0,0.2)' }}
+              />
+              <ProductButtons
+                className='custom-buttons'
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                }}
+              />
+            </ProductCard>
+          ))
+        }
       </div>
 
       <div>
         <code>
-          { JSON.stringify(shoppingCart, null, 5) }
+          {JSON.stringify(shoppingCart, null, 5)}
         </code>
       </div>
 
