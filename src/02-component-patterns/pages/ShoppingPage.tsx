@@ -26,15 +26,31 @@ export const ShoppingPage = () => {
 
   const onProductCountChange = ({ count, product }: OnChangeArgs) => {
     setShoppingCart(oldShoppingCart => {
-      if (count === 0) {
-        const { [product.id]: toDelete, ...rest } = oldShoppingCart;
-        return rest;
+      // UNA FORMA DE HACERLO
+      // sumar o crear un producto
+      const productInCart: ProductInCart = oldShoppingCart[product.id] || { ...product, count: 0 };
+      if (Math.max(productInCart.count + count, 0) > 0) {
+        productInCart.count += count;
+        return {
+          ...oldShoppingCart,
+          [product.id]: productInCart
+        }
       }
+      // borrar o restar un producto
+      const { [product.id]: toDelete, ...rest } = oldShoppingCart;
+      return {...rest};
 
-      return {
-        ...oldShoppingCart,
-        [product.id]: { ...product, count }
-      }
+
+      // OTRA FORMA DE HACERLO
+      // if (count === 0) {
+      // const { [product.id]: toDelete, ...rest } = oldShoppingCart;
+      // return rest;
+      // }
+
+      // return {
+      //   ...oldShoppingCart,
+      //   [product.id]: { ...product, count }
+      // }
     });
   }
 
@@ -100,7 +116,7 @@ export const ShoppingPage = () => {
               onChange={onProductCountChange}
               product={product}
               style={{ width: '100px' }}
-              value={ product.count }
+              value={product.count}
             >
               <ProductImage
                 className='custom-image'
@@ -117,7 +133,7 @@ export const ShoppingPage = () => {
           ))
         }
       </div>
- 
+
       {/*<div>
         <code>
           {JSON.stringify(shoppingCart, null, 5)}
