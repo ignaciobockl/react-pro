@@ -15,7 +15,6 @@ export const useProduct = ({ onChange, product, value = 0 }: useProductsArgs) =>
     }
 
     useEffect(() => setCounter(value), [value]);
-    
 
     return {
         counter,

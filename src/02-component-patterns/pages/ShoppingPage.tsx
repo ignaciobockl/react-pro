@@ -77,6 +77,7 @@ export const ShoppingPage = () => {
               key={product.id}
               onChange={onProductCountChange}
               product={product}
+              value={shoppingCart[product.id]?.count || 0}
             >
               <ProductImage
                 className='custom-image'
@@ -116,12 +117,12 @@ export const ShoppingPage = () => {
           ))
         }
       </div>
-
-      <div>
+ 
+      {/*<div>
         <code>
           {JSON.stringify(shoppingCart, null, 5)}
         </code>
-      </div>
+      </div> */}
 
     </div>
   )
